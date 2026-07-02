@@ -3,12 +3,55 @@ package main
 import "fmt"
 
 func main() {
-	text1 := "Get Ready"
-	score := 0
-	text2 := "Game Over"
+	score := 17
 
-	score = 111
+	if score > 10 && score <= 15 {
+		fmt.Println("Ты красавчик!")
+	} else if score > 15 {
+		fmt.Println("Ты мега-красавчик!")
+	} else {
+		fmt.Println("Тебе нужно еще многому научиться :)")
+	}
 
-	fmt.Println(text1)
-	fmt.Println(score, text2)
+	if score <= 10 {
+		fmt.Println("Тебе нужно еще многому научиться :)")
+	} else {
+		if score > 15 {
+			fmt.Println("Ты мега-красавчик!")
+		} else {
+			fmt.Println("Ты красавчик!")
+		}
+	}
+
+	// Решение автора
+
+	if score > 10 {
+		if score > 15 {
+			fmt.Println("Ты мега-красавчик!")
+		} else {
+			fmt.Println("Ты красавчик!")
+		}
+	} else {
+		fmt.Println("Тебе нужно еще многому научиться :)")
+	}
+
+	// Второе решение автора
+
+	if score > 15 {
+		fmt.Println("Ты мега-красавчик!")
+	} else {
+		if score > 10 {
+			fmt.Println("Ты красавчик!")
+		} else {
+			fmt.Println("Тебе нужно еще многому научиться :)")
+		}
+	}
+
+	if score > 15 {
+		fmt.Println("Ты мега-красавчик!")
+	} else if score > 10 {
+		fmt.Println("Ты красавчик!")
+	} else {
+		fmt.Println("Тебе нужно еще многому научиться :)")
+	}
 }
