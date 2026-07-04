@@ -3,13 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	number := 1
-	for i := 1; i <= 3; i++ {
-		inLoop := 1
-		fmt.Println("Iteration:", i, "Number:", number, "InLoop:", inLoop)
-		if i < 3 {
-			number++
-		}
+	score := 0
+
+	fmt.Println("Get Ready!")
+
+	for i := 0; i < 3; i++ {
+		fmt.Println("Вы подлетаете к трубе!")
+		fmt.Println("*Подлетаете*")
+		fmt.Println("")
+
+		fmt.Println("Вы пролетаете через трубу!")
+		fmt.Println("*Пролетаете*")
+		fmt.Println("")
+
+		fmt.Println("Вы пролетели через трубу!")
+		fmt.Println("*Пролетели*")
+		fmt.Println("")
+
+		score++
+		fmt.Println("Ваш счет:", score)
+		fmt.Println("")
 	}
-	fmt.Println("Final number:", number, "Final inLoop:", "Not accessible outside the loop")
 }
