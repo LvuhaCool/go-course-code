@@ -2,9 +2,16 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 )
 
 func main() {
-	fmt.Println("Random number:", rand.Intn(10))
+	fmt.Println("До")
+	for i := 1; i <= 5; i++ {
+		square(i)
+	}
+	fmt.Println("После")
+}
+
+func square(x int) {
+	fmt.Println("Квадрат числа:", x*x)
 }
