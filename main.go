@@ -3,12 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	subscribed := true
-	if !subscribed {
-		fmt.Println("Подпишись!")
+	number := 1
+	for i := 1; i <= 3; i++ {
+		inLoop := 1
+		fmt.Println("Iteration:", i, "Number:", number, "InLoop:", inLoop)
+		if i < 3 {
+			number++
+		}
 	}
-	notSubscribed := true
-	if !notSubscribed {
-		fmt.Println("Ура! Ты подписан!")
-	}
+	fmt.Println("Final number:", number, "Final inLoop:", "Not accessible outside the loop")
 }
