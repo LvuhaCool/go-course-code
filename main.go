@@ -5,13 +5,16 @@ import (
 )
 
 func main() {
-	fmt.Println("До")
-	for i := 1; i <= 5; i++ {
-		square(i)
-	}
-	fmt.Println("После")
+	fmt.Println("1")
+	defer func() {
+		fmt.Println("4")
+	}()
+	secondary()
 }
 
-func square(x int) {
-	fmt.Println("Квадрат числа:", x*x)
+func secondary() {
+	defer func() {
+		fmt.Println("3")
+	}()
+	fmt.Println(2)
 }
