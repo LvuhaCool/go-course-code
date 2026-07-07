@@ -5,17 +5,16 @@ import (
 )
 
 func main() {
-	fmt.Println("1")
-	defer func() {
-		fmt.Println("5")
-	}()
-	fmt.Println(secondary())
+	number := 10
+
+	pointer := &number
+
+	fmt.Println(pointer)
+
+	foo(pointer)
 }
 
-func secondary() int {
-	defer func() {
-		fmt.Println("3")
-	}()
-	fmt.Println(2)
-	return 4
+func foo(n *int) {
+	*n += 1
+	fmt.Println(*n)
 }
