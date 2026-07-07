@@ -7,14 +7,15 @@ import (
 func main() {
 	fmt.Println("1")
 	defer func() {
-		fmt.Println("4")
+		fmt.Println("5")
 	}()
-	secondary()
+	fmt.Println(secondary())
 }
 
-func secondary() {
+func secondary() int {
 	defer func() {
 		fmt.Println("3")
 	}()
 	fmt.Println(2)
+	return 4
 }
