@@ -1,20 +1,25 @@
 package main
 
 import (
-	"fmt"
+	"github.com/k0kubun/pp"
 )
 
-func main() {
-	number := 10
-
-	pointer := &number
-
-	fmt.Println(pointer)
-
-	foo(pointer)
+type User struct {
+	Name string
+	Age  int
 }
 
-func foo(n *int) {
-	*n += 1
-	fmt.Println(*n)
+func (u User) GetAge() int {
+	return u.Age
+}
+
+func main() {
+	user1 := User{
+		Name: "LvuhaCool",
+		Age:  13,
+	}
+
+	pp.Println(user1.GetAge())
+
+	pp.Println(user1)
 }
