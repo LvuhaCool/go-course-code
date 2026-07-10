@@ -1,12 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"github.com/k0kubun/pp"
+)
 
 func main() {
-	arr := [7]int{1, 2, 3, 4, 5, 6, 7}
-	fmt.Println(arr[5], arr[6])
+	arr := []int{1, 2, 3, 4, 5, 6, 7}
+	pp.Println(arr[5], arr[6])
+	pp.Println()
 
-	for i := 0; i < len(arr); i++ {
-		fmt.Println(i, arr[i])
-	}
+	arr = append(
+		arr, 8,
+	)
+
+	pp.Println(arr)
+
+	// for i, v := range arr {
+	// 	fmt.Println(i, v)
+	// }
+
+	intSlice := make([]int, 0, 5)
+
+	pp.Println(len(intSlice), cap(intSlice))
 }
