@@ -1,25 +1,19 @@
 package main
 
-import (
-	"github.com/k0kubun/pp"
-)
+import "github.com/k0kubun/pp"
 
 func main() {
-	arr := []int{1, 2, 3, 4, 5, 6, 7}
-	pp.Println(arr[5], arr[6])
-	pp.Println()
+	weather := map[int]int{
+		11: +3,
+		12: +6,
+		13: +9,
+		14: -4,
+		15: +1,
+	}
 
-	arr = append(
-		arr, 8,
-	)
+	truthy, ok1 := weather[11]
+	falsy, ok2 := weather[30]
 
-	pp.Println(arr)
-
-	// for i, v := range arr {
-	// 	fmt.Println(i, v)
-	// }
-
-	intSlice := make([]int, 0, 5)
-
-	pp.Println(len(intSlice), cap(intSlice))
+	pp.Println(truthy, ok1)
+	pp.Println(falsy, ok2)
 }
