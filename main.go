@@ -1,19 +1,52 @@
 package main
 
-import "github.com/k0kubun/pp"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 func main() {
-	weather := map[int]int{
-		11: +3,
-		12: +6,
-		13: +9,
-		14: -4,
-		15: +1,
+	scanner := bufio.NewScanner(os.Stdin)
+
+	fmt.Print("Введите команду: ")
+
+	if ok := scanner.Scan(); !ok {
+		fmt.Println("Ошибка ввода!")
+		return
 	}
 
-	truthy, ok1 := weather[11]
-	falsy, ok2 := weather[30]
+	text := scanner.Text()
+	fmt.Println("")
+	fields := strings.Fields(text)
 
-	pp.Println(truthy, ok1)
-	pp.Println(falsy, ok2)
+	if len(fields) == 0 {
+		fmt.Println("Вы ничего не ввели")
+		return
+	}
+
+	cmd := fields[0]
+
+	if cmd == "добавить" || cmd == "удалить" {
+		str := ""
+		for i := 1; i < len(fields); i++ {
+			str += fields[i]
+			if i != len(fields)-1 {
+				str += " "
+			}
+		}
+		fmt.Println("Вы хотите " + cmd + " " + str)
+	} else if cmd == "help" {
+		fmt.Println("Команда 'добавить' (то, что вы хотите добавить)")
+		fmt.Println("Добавляет то, что вы хотите добавить")
+		fmt.Println("---")
+		fmt.Println("Команда 'удалить' (то, что вы хотите удалить)")
+		fmt.Println("Удаляет то, что вы хотите удалить")
+		fmt.Println("---")
+		fmt.Println("Команда 'help'")
+		fmt.Println("Выводит список команд")
+	} else {
+		fmt.Println("Вы ввели неизвестную команду")
+	}
 }
