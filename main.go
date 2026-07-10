@@ -1,25 +1,12 @@
 package main
 
-import (
-	"github.com/k0kubun/pp"
-)
-
-type User struct {
-	Name string
-	Age  int
-}
-
-func (u User) GetAge() int {
-	return u.Age
-}
+import "fmt"
 
 func main() {
-	user1 := User{
-		Name: "LvuhaCool",
-		Age:  13,
+	arr := [7]int{1, 2, 3, 4, 5, 6, 7}
+	fmt.Println(arr[5], arr[6])
+
+	for i := 0; i < len(arr); i++ {
+		fmt.Println(i, arr[i])
 	}
-
-	pp.Println(user1.GetAge())
-
-	pp.Println(user1)
 }
