@@ -1,52 +1,123 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-)
+/* type user struct {
+	Name  string
+	Age   int
+	Email string
+} */
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	// Первая программа:
+	// fmt.Println("Hello, World!")
 
-	fmt.Print("Введите команду: ")
+	// Переменные:
+	/* firstVar := 1
+	var secondVar string = "string"
 
-	if ok := scanner.Scan(); !ok {
-		fmt.Println("Ошибка ввода!")
-		return
-	}
+	fmt.Println(firstVar, secondVar) */
 
-	text := scanner.Text()
-	fmt.Println("")
-	fields := strings.Fields(text)
-
-	if len(fields) == 0 {
-		fmt.Println("Вы ничего не ввели")
-		return
-	}
-
-	cmd := fields[0]
-
-	if cmd == "добавить" || cmd == "удалить" {
-		str := ""
-		for i := 1; i < len(fields); i++ {
-			str += fields[i]
-			if i != len(fields)-1 {
-				str += " "
-			}
-		}
-		fmt.Println("Вы хотите " + cmd + " " + str)
-	} else if cmd == "help" {
-		fmt.Println("Команда 'добавить' (то, что вы хотите добавить)")
-		fmt.Println("Добавляет то, что вы хотите добавить")
-		fmt.Println("---")
-		fmt.Println("Команда 'удалить' (то, что вы хотите удалить)")
-		fmt.Println("Удаляет то, что вы хотите удалить")
-		fmt.Println("---")
-		fmt.Println("Команда 'help'")
-		fmt.Println("Выводит список команд")
+	// Условные ветвления:
+	/* variable := 67
+	if variable < 100 {
+		fmt.Println("Меньше 100")
+	} else if variable < 200 {
+		fmt.Println("Меньше 200")
 	} else {
-		fmt.Println("Вы ввели неизвестную команду")
+		fmt.Println("Больше или равно 200")
+	} */
+
+	// Циклы:
+	/* for i := 0; i <= 5; i++ {
+		fmt.Println(i)
+	} */
+
+	// Функции:
+	// fmt.Println(funnyFun(60, 7))
+
+	// defer():
+	// insideMain()
+
+	// Указатели:
+	/* a := 1
+	b := 3
+
+	someFunc(&a, &b)
+
+	fmt.Println(a, b) */
+
+	/* user1 := user{
+		Name:  "LvuhaCool",
+		Age:   13,
+		Email: "bla@gmail.bla",
 	}
+
+	fmt.Println(user1.getName())
+	fmt.Println("-----------")
+	fmt.Println(user1.getAge())
+	fmt.Println("-----------")
+	fmt.Println(user1.getEmail())
+
+	// fmt.Println(user1) */
+
+	// Модули и пакеты
+	// pp.Println(67)
+
+	// fmt.Println(paketik.Paketik2())
+
+	// Массивы, слайсы, мапы
+	/* arr := []string{"1", "2", "3", "4"}
+	pp.Println(len(arr), cap(arr))
+	arr = append(arr, "5")
+	pp.Println(len(arr), cap(arr))
+
+	for i, v := range arr {
+		pp.Println(i, v)
+	}
+
+	mapThingy := map[string]int{
+		"Зима":  1,
+		"Весна": 2,
+		"Лето":  3,
+		"Осень": 4,
+	}
+
+	fmt.Println(mapThingy)
+	fmt.Println(mapThingy["Зима"]) */
 }
+
+/* func funnyFun(a int, b int) int {
+	return a + b
+} */
+
+/* func insideMain() {
+	defer func() {
+		fmt.Println("Defer")
+	}()
+	fmt.Println(67)
+	anotherFunc()
+}
+
+func anotherFunc() {
+	defer func() {
+		fmt.Println("Defer of anotherFunc")
+	}()
+	fmt.Println(676767)
+} */
+
+/* func someFunc(a *int, b *int) {
+	fmt.Println("someFunc working...")
+	*a += 1
+	*b += 1
+} */
+
+/* func (u user) getName() string {
+	return u.Name
+}
+
+func (u user) getAge() int {
+	return u.Age
+}
+
+func (u user) getEmail() string {
+	return u.Email
+} */
