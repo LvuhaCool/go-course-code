@@ -1,31 +1,22 @@
 package main
 
-/* import (
-	"fmt"
+import (
+	"study/payments"
+	"study/payments/methods"
+
+	"github.com/k0kubun/pp"
 )
 
-type Auto interface {
-	StepOnGas()
-}
-
-type BMW struct{}
-
-func (b BMW) StepOnGas() {
-	fmt.Println("Жмем на газ bmw")
-}
-
-type Zhiga struct{}
-
-func (z Zhiga) StepOnGas() {
-	fmt.Println("Жмем на газ zhiga")
-}
-
-func ride(auto Auto) {
-	fmt.Println("Водитель газует")
-	auto.StepOnGas()
-}
-
 func main() {
-	bmw := BMW{}
-	ride(bmw)
-} */
+	method := methods.NewCrypto()
+
+	paymentModule := payments.NewPaymentModule(method)
+
+	paymentModule.Pay("Бургер", 5)
+	paymentModule.Pay("Телефон", 500)
+	paymentModule.Pay("Игра", 20)
+
+	allInfo := paymentModule.AllInfo()
+
+	pp.Println("Все наши оплаты:", allInfo)
+}
