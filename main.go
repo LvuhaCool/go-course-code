@@ -1,27 +1,39 @@
 package main
 
 import (
-	"study/payments"
-	"study/payments/methods"
+	"errors"
+	"fmt"
 
 	"github.com/k0kubun/pp"
 )
 
+type User struct {
+	Name    string
+	Balance int
+}
+
+func Pay(user *User, usd int) error {
+	if user.Balance-usd < 0 {
+		err := errors.New("Недостаточно средств!")
+		return err
+	}
+	user.Balance -= usd
+	return ""
+}
+
 func main() {
-	method := methods.NewBonus()
+	user := User{
+		Name:    "Олег",
+		Balance: 10,
+	}
 
-	paymentModule := payments.NewPaymentModule(method)
+	pp.Println("User до:", user)
+	str := Pay(&user, 15)
+	pp.Println("User после:", user)
 
-	paymentModule.Pay("Бургер", 5)
-	idPhone := paymentModule.Pay("Телефон", 500)
-	idGame := paymentModule.Pay("Игра", 20)
-
-	paymentModule.Cancel(idPhone)
-
-	allInfo := paymentModule.AllInfo()
-
-	pp.Println("Все наши оплаты:", allInfo)
-
-	gameInfo := paymentModule.Info(idGame)
-	pp.Println("Информация об игре:", gameInfo)
+	if str == "" {
+		fmt.Println("Была произведена оплата!")
+	} else {
+		fmt.Println("Оплаты не было! Причина:", str)
+	}
 }
