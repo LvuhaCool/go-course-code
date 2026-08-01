@@ -1,85 +1,38 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"math/rand"
-
-	"github.com/k0kubun/pp"
+	"time"
 )
 
-type User struct {
-	Name    string
-	Balance int
-}
+func mine(transferPoint chan int, n int) {
+	fmt.Println("Поход в шахту номер", n, "начался...")
+	time.Sleep(1 * time.Second)
+	fmt.Println("Поход в шахту номер", n, "закончился")
 
-func Pay(user *User, usd int) error {
-	if user.Balance-usd < 0 {
-		err := errors.New("Недостаточно средств!")
-		return err
-	}
-	user.Balance -= usd
-	return nil
-}
-
-type Car struct {
-	Armor int
-}
-
-func (c *Car) Gas() (int, error) {
-	if c.Armor-10 <= 0 {
-		return 0, errors.New("Мы не стали газовать, чтобы не сломать машину")
-	}
-
-	kmph := rand.Intn(151)
-
-	c.Armor -= 10
-
-	return kmph, nil
+	transferPoint <- 10
+	fmt.Println("Поход номер", n, "уголь передал!")
 }
 
 func main() {
+	coal := 0
 
-	defer func() {
-		p := recover()
+	transferPoint := make(chan int)
 
-		if p != nil {
-			fmt.Println("Была паника:", p)
-		}
-	}()
+	initTime := time.Now()
 
-	slice := []int{1, 2, 3}
-	fmt.Println(slice[4])
+	go mine(transferPoint, 1)
+	go mine(transferPoint, 2)
+	go mine(transferPoint, 3)
 
-	user := User{
-		Name:    "Олег",
-		Balance: 10,
-	}
+	coal += <-transferPoint
+	time.Sleep(1 * time.Second)
+	coal += <-transferPoint
+	time.Sleep(1 * time.Second)
+	coal += <-transferPoint
+	time.Sleep(1 * time.Second)
+	coal += <-transferPoint
 
-	pp.Println("User до:", user)
-	err := Pay(&user, 15)
-	pp.Println("User после:", user)
-
-	if err != nil {
-		fmt.Println("Оплаты не было! Причина:", err.Error())
-	} else {
-		fmt.Println("Была произведена оплата!")
-	}
-
-	car := Car{
-		Armor: 25,
-	}
-
-	for {
-		pp.Println("car до:", car)
-		kmph, err := car.Gas()
-		pp.Println("car после:", car)
-
-		if err != nil {
-			fmt.Println("Ошибка нажатия на газ:", err.Error())
-			break
-		}
-		fmt.Println("Получившийся разгон:", kmph)
-		fmt.Println("")
-	}
+	fmt.Println("Добыли", coal, "угля!")
+	fmt.Println("Прошло времени:", time.Since(initTime))
 }
